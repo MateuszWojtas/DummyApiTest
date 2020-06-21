@@ -1,8 +1,7 @@
 ﻿using DomainObjects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 using RestSharp;
 using System.Text.Json;
-using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowTests.Steps

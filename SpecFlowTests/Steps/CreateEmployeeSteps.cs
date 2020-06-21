@@ -1,5 +1,4 @@
-﻿using System;
-using DomainObjects;
+﻿using DomainObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Text.Json;
@@ -60,11 +59,11 @@ namespace SpecFlowTests.Steps
         }
 
         //not needed since there are no error cases at the moment
-        [Then(@"Error response is returned with message")]
-        public void ThenErrorIsReturned()
-        {
-            var error = _restResponse.ErrorMessage;
-            Console.WriteLine(_restResponse.Content);
-        }
+        //[Then(@"Error response is returned with message")]
+        //public void ThenErrorIsReturned()
+        //{
+        //    var error = _restResponse.ErrorMessage;
+        //    Console.WriteLine(_restResponse.Content);
+        //}
     }
 }

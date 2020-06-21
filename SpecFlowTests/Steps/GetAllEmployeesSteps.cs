@@ -22,8 +22,10 @@ namespace SpecFlowTests.Steps
         [Then(@"The result should return all employee list")]
         public void ThenTheResultShouldReturnAllEmployeeList()
         {
+            //first asert to check
             //Assert.AreEqual(_expectedEmployeeJSON, _restResponse.Content);
 
+            //Asert second iteration
             //JToken expected = JToken.Parse(_expectedEmployeeJSON);
             //JToken actual = JToken.Parse(_restResponse.Content);
             //actual.Should().BeEquivalentTo(expected);
@@ -31,6 +33,7 @@ namespace SpecFlowTests.Steps
             var expected2 = JsonSerializer.Deserialize<ReadEmployeeList>(_expectedEmployeeJSON);
             var actual2 = JsonSerializer.Deserialize<ReadEmployeeList>(_restResponse.Content);
 
+            //final asert chosen for most tests
             actual2.Should().BeEquivalentTo(expected2);
         }
     }
