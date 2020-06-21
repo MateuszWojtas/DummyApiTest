@@ -4,12 +4,13 @@
 	I want to be able to send update PUT request
 
 @ValidScenarios
-Scenario: Name updating scenario
-	Given I Have employee with id <id> and name <baseName>
-	And I update its data with new Name <updatedName>
+Scenario: Employee updating scenario
+	Given I Have employee with id <id>
+	And I update employee data with new values <updatedName>,<updatedSalary>,<updatedAge>
+	And I created update request with updated data
 	When Request is sent
 	Then Response with the same id and new name is shown
 
-	Examples: 
-	| id | basename    | updatedname         |
-	| 1  | Tiger Nixon | Tiger Nixon Updated |
+	Examples:
+		| id | updatedName | updatedSalary | updatedAge |
+		| 2  | Mateusz     | 20            | 21         |

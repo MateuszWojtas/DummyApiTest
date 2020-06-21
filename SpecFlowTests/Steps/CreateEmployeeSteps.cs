@@ -8,6 +8,7 @@ using TechTalk.SpecFlow;
 namespace SpecFlowTests.Steps
 {
     [Binding]
+    [Scope(Feature = "CreateEmployee")]
     public class CreateEmployeeSteps : BaseSteps
     {
         public string EmployeeName { get; set; }

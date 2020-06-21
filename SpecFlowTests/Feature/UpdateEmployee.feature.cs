@@ -72,7 +72,7 @@ namespace SpecFlowTests.Feature
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void NameUpdatingScenario(string id, string basename, string updatedname, string[] exampleTags)
+        public virtual void EmployeeUpdatingScenario(string id, string updatedName, string updatedSalary, string updatedAge, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ValidScenarios"};
@@ -81,7 +81,7 @@ namespace SpecFlowTests.Feature
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             string[] tagsOfScenario = @__tags;
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Name updating scenario", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employee updating scenario", null, @__tags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,27 +103,30 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("I Have employee with id {0} and name <baseName>", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I Have employee with id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("I update its data with new Name <updatedName>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I update employee data with new values {0},{1},{2}", updatedName, updatedSalary, updatedAge), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I created update request with updated data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
+ testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
  testRunner.Then("Response with the same id and new name is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Name updating scenario, 1", new string[] {
-                "ValidScenarios"}, SourceLine=14)]
-        public virtual void NameUpdatingScenario_1()
+        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 2", new string[] {
+                "ValidScenarios"}, SourceLine=15)]
+        public virtual void EmployeeUpdatingScenario_2()
         {
 #line 7
-this.NameUpdatingScenario("1", "Tiger Nixon", "Tiger Nixon Updated", ((string[])(null)));
+this.EmployeeUpdatingScenario("2", "Mateusz", "20", "21", ((string[])(null)));
 #line hidden
         }
         

@@ -18,6 +18,9 @@ namespace SpecFlowTests.Steps
         {
             _restClient = new RestClient($"http://dummy.restapiexample.com/api/v1/employee/{p0}");
             _restRequest = new RestRequest(Method.GET);
+            _restRequest.AddHeader("Content-Type", "text/plain");
+            _restRequest.AddHeader("Cookie", "PHPSESSID=7a8bb0856b7cd9fe1b7c083709d0fb7d");
+            
         }
 
 
