@@ -72,7 +72,7 @@ namespace SpecFlowTests.Feature
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void SendReadRequestWithValidEmployeeId(string id, string response, string[] exampleTags)
+        public virtual void SendReadRequestWithValidEmployeeId(string id, string responseName, string responseAge, string responseSalary, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ValidScenario"};
@@ -103,45 +103,47 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("I have valid request prepared with employee id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have request prepared with employee id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then(string.Format("Response should contain data of employee with id {0}", response), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("Response should contain data {0},{1},{2},{3}", id, responseName, responseAge, responseSalary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Send read request with valid employee Id, 2", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Send read request with valid employee Id, 20", new string[] {
                 "ValidScenario"}, SourceLine=13)]
-        public virtual void SendReadRequestWithValidEmployeeId_2()
+        public virtual void SendReadRequestWithValidEmployeeId_20()
         {
 #line 7
-this.SendReadRequestWithValidEmployeeId("2", "2", ((string[])(null)));
+this.SendReadRequestWithValidEmployeeId("20", "Dai Rios", "35", "217500", ((string[])(null)));
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Send read request with valid employee Id, 4", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Send read request with valid employee Id, 1", new string[] {
                 "ValidScenario"}, SourceLine=13)]
-        public virtual void SendReadRequestWithValidEmployeeId_4()
+        public virtual void SendReadRequestWithValidEmployeeId_1()
         {
 #line 7
-this.SendReadRequestWithValidEmployeeId("4", "4", ((string[])(null)));
+this.SendReadRequestWithValidEmployeeId("1", "Tiger Nixon", "61", "320800", ((string[])(null)));
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id but valid Id format", new string[] {
-                "InvalidScenario"}, SourceLine=18)]
-        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat()
+        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat(string id, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "InvalidScenario"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send request with invalid employee Id but valid Id format", null, new string[] {
-                        "InvalidScenario"});
-#line 19
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send request with invalid employee Id but valid Id format", null, @__tags);
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -161,93 +163,53 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 19
  testRunner.Given("I have request prepared with employee id 234", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 20
+ testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 21
- testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.Then("Response should contain error - No Customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Response should contain error No Record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id with special haracter", SourceLine=24)]
-        public virtual void SendRequestWithInvalidEmployeeIdWithSpecialHaracter()
+        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id but valid Id format, 234", new string[] {
+                "InvalidScenario"}, SourceLine=24)]
+        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat_234()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send request with invalid employee Id with special haracter", null, ((string[])(null)));
-#line 25
-this.ScenarioInitialize(scenarioInfo);
+#line 18
+this.SendRequestWithInvalidEmployeeIdButValidIdFormat("234", ((string[])(null)));
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 26
- testRunner.Given("I have request prepared with employee id 23$", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 27
- testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 28
- testRunner.Then("Response should contain error - No Customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id - empty Id", SourceLine=29)]
-        public virtual void SendRequestWithInvalidEmployeeId_EmptyId()
+        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id but valid Id format, $23", new string[] {
+                "InvalidScenario"}, SourceLine=24)]
+        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat_23()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send request with invalid employee Id - empty Id", null, ((string[])(null)));
-#line 30
-this.ScenarioInitialize(scenarioInfo);
+#line 18
+this.SendRequestWithInvalidEmployeeIdButValidIdFormat("$23", ((string[])(null)));
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 31
- testRunner.Given("I have request prepared with employee id 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id but valid Id format, asd", new string[] {
+                "InvalidScenario"}, SourceLine=24)]
+        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat_Asd()
+        {
+#line 18
+this.SendRequestWithInvalidEmployeeIdButValidIdFormat("asd", ((string[])(null)));
 #line hidden
-#line 32
- testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Send request with invalid employee Id but valid Id format, null", new string[] {
+                "InvalidScenario"}, SourceLine=24)]
+        public virtual void SendRequestWithInvalidEmployeeIdButValidIdFormat_Null()
+        {
+#line 18
+this.SendRequestWithInvalidEmployeeIdButValidIdFormat("null", ((string[])(null)));
 #line hidden
-#line 33
- testRunner.Then("Response should contain error - No Customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
         }
         
         [TechTalk.SpecRun.TestRunCleanup()]
