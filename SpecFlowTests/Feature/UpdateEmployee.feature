@@ -14,3 +14,7 @@ Scenario: Employee updating scenario
 	Examples:
 		| id | updatedName | updatedSalary | updatedAge |
 		| 2  | Mateusz     | 20            | 21         |
+		| 4  | null        | 30            | 21         |
+		| 6  | Max         | null          | 11         |
+		| 8  | Klark Kent  | 23            | null       |
+		| 11 | null        | null          | null       |

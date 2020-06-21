@@ -130,6 +130,42 @@ this.EmployeeUpdatingScenario("2", "Mateusz", "20", "21", ((string[])(null)));
 #line hidden
         }
         
+        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 4", new string[] {
+                "ValidScenarios"}, SourceLine=15)]
+        public virtual void EmployeeUpdatingScenario_4()
+        {
+#line 7
+this.EmployeeUpdatingScenario("4", "null", "30", "21", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 6", new string[] {
+                "ValidScenarios"}, SourceLine=15)]
+        public virtual void EmployeeUpdatingScenario_6()
+        {
+#line 7
+this.EmployeeUpdatingScenario("6", "Max", "null", "11", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 8", new string[] {
+                "ValidScenarios"}, SourceLine=15)]
+        public virtual void EmployeeUpdatingScenario_8()
+        {
+#line 7
+this.EmployeeUpdatingScenario("8", "Klark Kent", "23", "null", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 11", new string[] {
+                "ValidScenarios"}, SourceLine=15)]
+        public virtual void EmployeeUpdatingScenario_11()
+        {
+#line 7
+this.EmployeeUpdatingScenario("11", "null", "null", "null", ((string[])(null)));
+#line hidden
+        }
+        
         [TechTalk.SpecRun.TestRunCleanup()]
         public virtual void TestRunCleanup()
         {

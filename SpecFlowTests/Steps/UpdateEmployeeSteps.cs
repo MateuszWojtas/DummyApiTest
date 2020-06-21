@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Text.Json;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowTests.Steps
@@ -10,7 +11,7 @@ namespace SpecFlowTests.Steps
     [Scope(Feature = "UpdateEmployee")]
     public class UpdateEmployeeSteps : BaseSteps
     {
-        private string _employeeUpdatedName; 
+        private string _employeeUpdatedName;
         private string _employeeId;
         private string _employeeUpdatedSalary;
         private string _employeeUpdatedAge;
@@ -20,13 +21,13 @@ namespace SpecFlowTests.Steps
         {
             _employeeId = p0;
         }
-        
+
         [Given(@"I update employee data with new values (.*),(.*),(.*)")]
         public void GivenIUpdateEmployeeDataWithNewValues(string newName, string newSalary, string newAge)
         {
-            _employeeUpdatedName = newName != "null" ? newName : null;
-            _employeeUpdatedAge = newAge != "null" ? newAge : null;
-            _employeeUpdatedSalary = newSalary != "null" ? newSalary : null;
+            _employeeUpdatedName = newName != "null" ? newName : string.Empty;
+            _employeeUpdatedAge = newAge != "null" ? newAge : string.Empty;
+            _employeeUpdatedSalary = newSalary != "null" ? newSalary : string.Empty;
         }
 
         [Given(@"I created update request with updated data")]
@@ -43,18 +44,26 @@ namespace SpecFlowTests.Steps
         [Then(@"Response with the same id and new name is shown")]
         public void ThenResponseWithTheSameIdAndNewNameIsShown()
         {
-            var expected = new ModifyEmployeeResponse
+            var expected = new ReadSingleEmployee
             {
-                EmployeeName = _employeeUpdatedName,
-                EmployeeSalary = _employeeUpdatedSalary,
-                EmployeeAge = _employeeUpdatedAge
+                Status = "success",
+                Employee = new ReadEmployee
+                {
+                    EmployeeName = _employeeUpdatedName,
+                    EmployeeSalary = _employeeUpdatedSalary,
+                    EmployeeAge = _employeeUpdatedAge,
+                    ProfileImage = "",
+                    Id = _employeeId
+                }
             };
-            var actual = JsonSerializer.Deserialize<ModifyEmployeeResponse>(_restResponse.Content);
+            var actual = JsonSerializer.Deserialize<ReadSingleEmployee>(_restResponse.Content);
 
-            Assert.AreEqual(expected.EmployeeName, actual.EmployeeName, "Employee Name");
-            Assert.AreEqual(expected.EmployeeSalary, actual.EmployeeSalary, "Employee Salary");
-            Assert.AreEqual(expected.EmployeeAge, actual.EmployeeAge, "Employee Age");
-            Assert.IsNotNull(actual.EmployeeId,  "Employee Id");
+            actual.Should().BeEquivalentTo(expected);
+
+            //Assert.AreEqual(expected.Employee.EmployeeName, actual.Employee.EmployeeName, "Employee Name");
+            //Assert.AreEqual(expected.Employee.EmployeeSalary, actual.Employee.EmployeeSalary, "Employee Salary");
+            //Assert.AreEqual(expected.Employee.EmployeeAge, actual.Employee.EmployeeAge, "Employee Age");
+            //Assert.IsNotNull(expected.Employee.Id,actual.Employee.Id, "Employee Id");
         }
     }
 }
