@@ -8,7 +8,7 @@ namespace DomainObjects
     public class ModifyEmployee
     {
         [JsonPropertyName("id")] 
-        public virtual string EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         [JsonPropertyName("name")]
         public string EmployeeName { get; set; }

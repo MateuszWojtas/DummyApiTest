@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Text.Json;
 using DomainObjects;
-using FluentAssertions;
-using Gherkin.Ast;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
+using System.Text.Json;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowTests.Steps
@@ -13,47 +11,59 @@ namespace SpecFlowTests.Steps
     public class CreateEmployeeSteps : BaseSteps
     {
         public string EmployeeName { get; set; }
-        public int EmployeeSalary { get; set; }
-        public int EmployeeAge { get; set; }
+        public string EmployeeSalary { get; set; }
+        public string EmployeeAge { get; set; }
 
         [Given(@"I have entered (.*) as a name of employee")]
         public void GivenIHaveEnteredMateuszAsANameOfEmployee(string p0)
         {
-            EmployeeName = p0;
+            EmployeeName = p0 == "null" ? null : p0;
         }
-        
+
         [Given(@"I have entered (.*) as salary")]
-        public void GivenIHaveEnteredAsSalary(int p0)
+        public void GivenIHaveEnteredAsSalary(string p0)
         {
-            EmployeeSalary = p0;
+            EmployeeSalary = p0 == "null" ? null : p0;
         }
-        
+
         [Given(@"I have entered (.*) as  age")]
-        public void GivenIHaveEnteredAsAge(int p0)
+        public void GivenIHaveEnteredAsAge(string p0)
         {
-            EmployeeAge = p0;
+            EmployeeAge = p0 == "null" ? null : p0;
         }
-        
+
         [Given(@"Request is prepared")]
         public void GivenRequestIsPrepared()
         {
             var jsonRaw = $"{{\"name\":\"{EmployeeName}\",\"salary\":\"{EmployeeSalary}\",\"age\":\"{EmployeeAge}\"}}";
             _restClient = new RestClient("http://dummy.restapiexample.com/api/v1/create");
-            _restRequest = new RestRequest("" ,Method.POST, DataFormat.Json);
+            _restRequest = new RestRequest("", Method.POST, DataFormat.Json);
             _restRequest.AddParameter("application/json", jsonRaw, ParameterType.RequestBody);
         }
-        
+
         [Then(@"Guest should be created with data - (.*),(.*),(.*)")]
         public void ThenGuestShouldBeCreatedWithData_Mateusz(string name, string salary, string age)
         {
-            var expectedEmployee = new ModifyEmployee{EmployeeAge = age, EmployeeSalary = salary, EmployeeName = name};
+            var expectedEmployee = new ModifyEmployee
+            {
+                EmployeeAge = age == "null" ? string.Empty : age,
+                EmployeeSalary = salary == "null" ? string.Empty : salary,
+                EmployeeName = name == "null" ? string.Empty : name
+            };
             var actual = JsonSerializer.Deserialize<CreateEmployeeResponse>(_restResponse.Content);
 
-            //actual.Should().BeEquivalentTo(expectedEmployee);
             Assert.AreEqual(expectedEmployee.EmployeeName, actual.Employee.EmployeeName, "Employee Name");
             Assert.AreEqual(expectedEmployee.EmployeeSalary, actual.Employee.EmployeeSalary, "Employee Salary");
             Assert.AreEqual(expectedEmployee.EmployeeAge, actual.Employee.EmployeeAge, "Employee Age");
             Assert.IsNotNull(actual.Employee.EmployeeId, "Employee Id");
+        }
+
+        //not needed since there are no error cases at the moment
+        [Then(@"Error response is returned with message")]
+        public void ThenErrorIsReturned()
+        {
+            var error = _restResponse.ErrorMessage;
+            Console.WriteLine(_restResponse.Content);
         }
     }
 }

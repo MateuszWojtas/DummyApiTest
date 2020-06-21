@@ -72,14 +72,16 @@ namespace SpecFlowTests.Feature
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Create Employee", new string[] {
-                "ValidScenario"}, SourceLine=6)]
-        public virtual void CreateEmployee()
+        public virtual void CreateEmployeeWithValidDataInput(string name, string salary, string age, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "ValidScenario"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employee", null, new string[] {
-                        "ValidScenario"});
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employee with valid data input", null, @__tags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -101,13 +103,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("I have entered Mateusz as a name of employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have entered {0} as a name of employee", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("I have entered 30000 as salary", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have entered {0} as salary", salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("I have entered 23 as  age", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have entered {0} as  age", age), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.And("Request is prepared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -116,10 +118,82 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("Guest should be created with data - Mateusz,30000,23", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("Guest should be created with data - {0},{1},{2}", name, salary, age), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 0", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant0()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz", "30000", "23", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 1", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant1()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz Wojtas", "0", "100", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 2", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant2()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Name", "1", "0", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 3", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant3()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("null", "30000", "23", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 4", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant4()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz", "null", "10", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 5", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant5()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz", "30", "null", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 6", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant6()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz", "-30", "10", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Create Employee with valid data input, Variant 7", new string[] {
+                "ValidScenario"}, SourceLine=16)]
+        public virtual void CreateEmployeeWithValidDataInput_Variant7()
+        {
+#line 7
+this.CreateEmployeeWithValidDataInput("Mateusz", "30", "-10", ((string[])(null)));
+#line hidden
         }
         
         [TechTalk.SpecRun.TestRunCleanup()]
