@@ -19,24 +19,24 @@ namespace SpecFlowTests.Feature
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("UpdateEmployee", Description="\tIn order to chenge employee data\r\n\tAs a customer app\r\n\tI want to be able to send" +
-        " update PUT request", SourceFile="Feature\\UpdateEmployee.feature", SourceLine=0)]
-    public partial class UpdateEmployeeFeature
+    [TechTalk.SpecRun.FeatureAttribute("DeleteEmployee", Description="\tIn order to delete dmployee data\r\n\tAs a client API\r\n\tI want to be able to send d" +
+        "elete request with employee id", SourceFile="Feature\\DeleteEmployee.feature", SourceLine=0)]
+    public partial class DeleteEmployeeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "UpdateEmployee.feature"
+#line 1 "DeleteEmployee.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UpdateEmployee", "\tIn order to chenge employee data\r\n\tAs a customer app\r\n\tI want to be able to send" +
-                    " update PUT request", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DeleteEmployee", "\tIn order to delete dmployee data\r\n\tAs a client API\r\n\tI want to be able to send d" +
+                    "elete request with employee id", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,16 +72,14 @@ namespace SpecFlowTests.Feature
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EmployeeUpdatingScenario(string id, string updatedName, string updatedSalary, string updatedAge, string[] exampleTags)
+        [TechTalk.SpecRun.ScenarioAttribute("Deleting employee with valid data", new string[] {
+                "ValidScenario"}, SourceLine=6)]
+        public virtual void DeletingEmployeeWithValidData()
         {
-            string[] @__tags = new string[] {
-                    "ValidScenarios"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employee updating scenario", null, @__tags);
+            string[] tagsOfScenario = new string[] {
+                    "ValidScenario"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting employee with valid data", null, new string[] {
+                        "ValidScenario"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,78 +101,32 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("I Have employee with id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Employee to be deleted exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And(string.Format("I update employee data with new values {0},{1},{2}", updatedName, updatedSalary, updatedAge), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I prepared delete request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("I created update request with updated data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
  testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.Then("Response with the same id and new name is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.Then("Delete confirmation message is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 2", new string[] {
-                "ValidScenarios"}, SourceLine=15)]
-        public virtual void EmployeeUpdatingScenario_2()
+        public virtual void DeletingEmployeeWithInvalidData(string id, string[] exampleTags)
         {
-#line 7
-this.EmployeeUpdatingScenario("2", "Mateusz", "20", "21", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 4", new string[] {
-                "ValidScenarios"}, SourceLine=15)]
-        public virtual void EmployeeUpdatingScenario_4()
-        {
-#line 7
-this.EmployeeUpdatingScenario("4", "null", "30", "21", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 6", new string[] {
-                "ValidScenarios"}, SourceLine=15)]
-        public virtual void EmployeeUpdatingScenario_6()
-        {
-#line 7
-this.EmployeeUpdatingScenario("6", "Max", "null", "11", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 8", new string[] {
-                "ValidScenarios"}, SourceLine=15)]
-        public virtual void EmployeeUpdatingScenario_8()
-        {
-#line 7
-this.EmployeeUpdatingScenario("8", "Klark Kent", "23", "null", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Employee updating scenario, 11", new string[] {
-                "ValidScenarios"}, SourceLine=15)]
-        public virtual void EmployeeUpdatingScenario_11()
-        {
-#line 7
-this.EmployeeUpdatingScenario("11", "null", "null", "null", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Update with empty body", new string[] {
-                "InvalidScenario"}, SourceLine=22)]
-        public virtual void UpdateWithEmptyBody()
-        {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "InvalidScenario"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update with empty body", null, new string[] {
-                        "InvalidScenario"});
-#line 23
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting employee with invalid data", null, @__tags);
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -194,17 +146,47 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
- testRunner.Given("I created update request without Body", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.Given(string.Format("I want to delete employee with {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
+#line 16
+ testRunner.And("I prepared delete request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
  testRunner.When("Request is sent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
- testRunner.Then("Response with null values is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+ testRunner.Then("Error message is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Deleting employee with invalid data, 123", new string[] {
+                "InvalidScenario"}, SourceLine=21)]
+        public virtual void DeletingEmployeeWithInvalidData_123()
+        {
+#line 14
+this.DeletingEmployeeWithInvalidData("123", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Deleting employee with invalid data, aa", new string[] {
+                "InvalidScenario"}, SourceLine=21)]
+        public virtual void DeletingEmployeeWithInvalidData_Aa()
+        {
+#line 14
+this.DeletingEmployeeWithInvalidData("aa", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Deleting employee with invalid data, 12$", new string[] {
+                "InvalidScenario"}, SourceLine=21)]
+        public virtual void DeletingEmployeeWithInvalidData_12()
+        {
+#line 14
+this.DeletingEmployeeWithInvalidData("12$", ((string[])(null)));
+#line hidden
         }
         
         [TechTalk.SpecRun.TestRunCleanup()]

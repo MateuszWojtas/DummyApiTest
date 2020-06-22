@@ -1,4 +1,6 @@
-﻿using DomainObjects;
+﻿using System;
+using System.Linq;
+using DomainObjects;
 using FluentAssertions;
 using RestSharp;
 using System.Text.Json;
@@ -14,11 +16,14 @@ namespace SpecFlowTests.Steps
         [Given(@"I have request prepared with employee id (.*)")]
         public void GivenIHaveValidRequestPreparedWithEmployeeId(string p0)
         {
+            
+            
             var id = p0 != "null" ? p0 : string.Empty;
             _restClient = new RestClient($"http://dummy.restapiexample.com/api/v1/employee/{p0}");
             _restRequest = new RestRequest(Method.GET);
-            _restRequest.AddHeader("Content-Type", "text/plain");
-            _restRequest.AddHeader("Cookie", "PHPSESSID=7a8bb0856b7cd9fe1b7c083709d0fb7d");
+            _restRequest.AddParameter("text/plain", "", ParameterType.RequestBody);
+            //_restRequest.AddHeader("Cookie", $"PHPSESSID={RestHelper.GetSessionId()}");
+            _restRequest.AddHeader("Cookie", $"PHPSESSID=061aa161aefa9611b5fe5b4aaa1b10f0");
 
         }
 

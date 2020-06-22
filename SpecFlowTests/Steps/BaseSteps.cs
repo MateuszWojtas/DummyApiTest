@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using TechTalk.SpecFlow;
+using TestUtils;
 
 namespace SpecFlowTests.Steps
 {
@@ -7,7 +8,8 @@ namespace SpecFlowTests.Steps
     {
         protected IRestResponse _restResponse;
         protected IRestClient _restClient;
-        protected RestRequest _restRequest;
+        protected IRestRequest _restRequest;
+        protected readonly RestHelper RestHelper = new RestHelper();
 
 
         [When(@"Request is sent")]

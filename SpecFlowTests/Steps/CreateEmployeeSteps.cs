@@ -35,14 +35,12 @@ namespace SpecFlowTests.Steps
         [Given(@"Request is prepared")]
         public void GivenRequestIsPrepared()
         {
-            var jsonRaw = $"{{\"name\":\"{EmployeeName}\",\"salary\":\"{EmployeeSalary}\",\"age\":\"{EmployeeAge}\"}}";
             _restClient = new RestClient("http://dummy.restapiexample.com/api/v1/create");
-            _restRequest = new RestRequest("", Method.POST, DataFormat.Json);
-            _restRequest.AddParameter("application/json", jsonRaw, ParameterType.RequestBody);
+            _restRequest = RestHelper.PrepareCreateEmployeeRequest(EmployeeName, EmployeeSalary, EmployeeAge);
         }
 
         [Then(@"Guest should be created with data - (.*),(.*),(.*)")]
-        public void ThenGuestShouldBeCreatedWithData_Mateusz(string name, string salary, string age)
+        public void ThenGuestShouldBeCreatedWithData(string name, string salary, string age)
         {
             var expectedEmployee = new ModifyEmployee
             {

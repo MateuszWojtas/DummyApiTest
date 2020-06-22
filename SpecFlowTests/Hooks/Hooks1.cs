@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
+using System.IO;
+using System.Net;
+using RestSharp;
 using TechTalk.SpecFlow;
+using TestUtils;
 
 namespace SpecFlowTests.Hooks
 {
@@ -12,7 +13,12 @@ namespace SpecFlowTests.Hooks
         [BeforeScenario]
         public void BeforeScenario()
         {
-            //TODO: zapisywanie aktulanych all suers dla asercji  getall
+            //IRestClient client = new RestClient("http://dummy.restapiexample.com/api/v1/employee/9");
+            //IRestRequest request = new RestRequest(Method.GET);
+            //IRestResponse response = client.Execute(request);
+            //var sessionId = response.Cookies[0].Value;
+            //client.CookieContainer.Add(new Cookie("SessionId", sessionId));
+           
         }
 
         [AfterScenario]

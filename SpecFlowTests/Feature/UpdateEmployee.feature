@@ -18,3 +18,9 @@ Scenario: Employee updating scenario
 		| 6  | Max         | null          | 11         |
 		| 8  | Klark Kent  | 23            | null       |
 		| 11 | null        | null          | null       |
+
+@InvalidScenario
+Scenario: Update with empty body
+	Given I created update request without Body
+	When Request is sent
+	Then Response with null values is shown

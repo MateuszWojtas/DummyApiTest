@@ -26,3 +26,5 @@ Scenario: Send request with invalid employee Id but valid Id format
 		| $23  |
 		| asd  |
 		| null |
+#add no secion(cookie) test for other error
+#error cases for all operatioon that require some body and don't get it

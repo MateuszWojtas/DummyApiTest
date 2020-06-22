@@ -32,13 +32,24 @@ namespace SpecFlowTests.Steps
         [Given(@"I created update request with updated data")]
         public void GivenICreateUpdateRequestWithNewData()
         {
-            var jsonRaw = $"{{\"name\":\"{_employeeUpdatedName}\",\"salary\":\"{_employeeUpdatedSalary}\",\"age\":\"{_employeeUpdatedAge}\"}}";
+            string buildBody;
             _restClient = new RestClient($"http://dummy.restapiexample.com/api/v1/update/{_employeeId}");
+            _restRequest = RestHelper.PrepareUpdateEmployeeRequest(_employeeUpdatedName, _employeeUpdatedSalary, _employeeUpdatedAge, out buildBody);
+            _restRequest.AddHeader("Cookie", "PHPSESSID=061aa161aefa9611b5fe5b4aaa1b10f0");
+            _restRequest.AddParameter("text/plain", buildBody, ParameterType.RequestBody);
+        }
+
+       
+
+        [Given(@"I created update request without Body")]
+        public void GivenIPreparedRequestWithoutBody()
+        {
+            _restClient = new RestClient($"http://dummy.restapiexample.com/api/v1/update/7");
             _restRequest = new RestRequest("", Method.PUT);
             _restRequest.AddHeader("Content-Type", "text/plain");
-            _restRequest.AddHeader("Cookie", "PHPSESSID=7a8bb0856b7cd9fe1b7c083709d0fb7d");
-            _restRequest.AddParameter("text/plain", jsonRaw, ParameterType.RequestBody);
+            _restRequest.AddHeader("Cookie", "PHPSESSID=061aa161aefa9611b5fe5b4aaa1b10f0");
         }
+
 
         [Then(@"Response with the same id and new name is shown")]
         public void ThenResponseWithTheSameIdAndNewNameIsShown()
@@ -63,6 +74,25 @@ namespace SpecFlowTests.Steps
             //Assert.AreEqual(expected.Employee.EmployeeSalary, actual.Employee.EmployeeSalary, "Employee Salary");
             //Assert.AreEqual(expected.Employee.EmployeeAge, actual.Employee.EmployeeAge, "Employee Age");
             //Assert.IsNotNull(expected.Employee.Id,actual.Employee.Id, "Employee Id");
+        }
+
+        [Then(@"Response with null values is shown")]
+        public void ThenResponseWithNullValuesIsShown()
+        {
+            var expected = new ReadSingleEmployee
+            {
+                Status = "success",
+                Employee = new ReadEmployee
+                {
+                    Id = "7",
+                    EmployeeName = null,
+                    EmployeeSalary = null,
+                    EmployeeAge = null,
+                    ProfileImage = ""
+                }
+            };
+            var actual = JsonSerializer.Deserialize<ReadSingleEmployee>(_restResponse.Content);
+            actual.Should().BeEquivalentTo(expected);
         }
     }
 }
