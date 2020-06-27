@@ -1,10 +1,8 @@
-﻿using System.Text.Json;
-using DomainObjects;
+﻿using DomainObjects;
 using FluentAssertions;
-using Google.Protobuf.WellKnownTypes;
 using RestSharp;
+using System.Text.Json;
 using TechTalk.SpecFlow;
-using TestUtils;
 using Method = RestSharp.Method;
 
 namespace SpecFlowTests.Steps

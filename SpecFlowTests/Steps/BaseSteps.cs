@@ -9,7 +9,7 @@ namespace SpecFlowTests.Steps
         protected IRestResponse _restResponse;
         protected IRestClient _restClient;
         protected IRestRequest _restRequest;
-        protected readonly RestHelper RestHelper = new RestHelper();
+        protected readonly RequestBuilder RestHelper = new RequestBuilder();
 
 
         [When(@"Request is sent")]

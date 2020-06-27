@@ -1,7 +1,9 @@
 ﻿using DomainObjects;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowTests.Steps
@@ -15,21 +17,21 @@ namespace SpecFlowTests.Steps
         public string EmployeeAge { get; set; }
 
         [Given(@"I have entered (.*) as a name of employee")]
-        public void GivenIHaveEnteredMateuszAsANameOfEmployee(string p0)
+        public void GivenIHaveEnteredNameOfEmployee(string p0)
         {
-            EmployeeName = p0 == "null" ? null : p0;
+            EmployeeName = p0 == "null" ? string.Empty : p0;
         }
 
         [Given(@"I have entered (.*) as salary")]
         public void GivenIHaveEnteredAsSalary(string p0)
         {
-            EmployeeSalary = p0 == "null" ? null : p0;
+            EmployeeSalary = p0 == "null" ? string.Empty : p0;
         }
 
         [Given(@"I have entered (.*) as  age")]
         public void GivenIHaveEnteredAsAge(string p0)
         {
-            EmployeeAge = p0 == "null" ? null : p0;
+            EmployeeAge = p0 == "null" ? string.Empty : p0;
         }
 
         [Given(@"Request is prepared")]
@@ -46,22 +48,17 @@ namespace SpecFlowTests.Steps
             {
                 EmployeeAge = age == "null" ? string.Empty : age,
                 EmployeeSalary = salary == "null" ? string.Empty : salary,
-                EmployeeName = name == "null" ? string.Empty : name
+                EmployeeName = name == "null" ? string.Empty : name,
+                EmployeeId = ""
             };
             var actual = JsonSerializer.Deserialize<CreateEmployeeResponse>(_restResponse.Content);
+            var employeeId = actual.Employee.EmployeeId;
+            
+            Assert.IsNotNull(employeeId, "Employee Id");
+            StringAssert.Matches(employeeId.ToString(), new Regex("^\\d{1,3}$"));
+            actual.Should().BeEquivalentTo(expectedEmployee, options => options
+                .Excluding(e => e.EmployeeId));
 
-            Assert.AreEqual(expectedEmployee.EmployeeName, actual.Employee.EmployeeName, "Employee Name");
-            Assert.AreEqual(expectedEmployee.EmployeeSalary, actual.Employee.EmployeeSalary, "Employee Salary");
-            Assert.AreEqual(expectedEmployee.EmployeeAge, actual.Employee.EmployeeAge, "Employee Age");
-            Assert.IsNotNull(actual.Employee.EmployeeId, "Employee Id");
         }
-
-        //not needed since there are no error cases at the moment
-        //[Then(@"Error response is returned with message")]
-        //public void ThenErrorIsReturned()
-        //{
-        //    var error = _restResponse.ErrorMessage;
-        //    Console.WriteLine(_restResponse.Content);
-        //}
     }
 }

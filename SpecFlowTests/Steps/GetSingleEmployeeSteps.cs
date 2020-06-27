@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using DomainObjects;
+﻿using DomainObjects;
 using FluentAssertions;
 using RestSharp;
 using System.Text.Json;
@@ -34,14 +32,7 @@ namespace SpecFlowTests.Steps
             var expected = new ReadSingleEmployee
             {
                 Status = "success",
-                Employee = new ReadEmployee
-                {
-                    Id = id,
-                    EmployeeName = name,
-                    EmployeeAge = age,
-                    EmployeeSalary = salary,
-                    ProfileImage = ""
-                }
+                Employee = new ReadEmployee(name, age, salary, id, "")
             };
             var actual = JsonSerializer.Deserialize<ReadSingleEmployee>(_restResponse.Content);
 

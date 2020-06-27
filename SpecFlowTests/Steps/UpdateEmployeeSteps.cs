@@ -57,14 +57,7 @@ namespace SpecFlowTests.Steps
             var expected = new ReadSingleEmployee
             {
                 Status = "success",
-                Employee = new ReadEmployee
-                {
-                    EmployeeName = _employeeUpdatedName,
-                    EmployeeSalary = _employeeUpdatedSalary,
-                    EmployeeAge = _employeeUpdatedAge,
-                    ProfileImage = "",
-                    Id = _employeeId
-                }
+                Employee = new ReadEmployee(_employeeUpdatedName, _employeeUpdatedAge, _employeeUpdatedSalary, _employeeId, "")
             };
             var actual = JsonSerializer.Deserialize<ReadSingleEmployee>(_restResponse.Content);
 
@@ -82,14 +75,7 @@ namespace SpecFlowTests.Steps
             var expected = new ReadSingleEmployee
             {
                 Status = "success",
-                Employee = new ReadEmployee
-                {
-                    Id = "7",
-                    EmployeeName = null,
-                    EmployeeSalary = null,
-                    EmployeeAge = null,
-                    ProfileImage = ""
-                }
+                Employee = new ReadEmployee(null, null,null, "7", "")
             };
             var actual = JsonSerializer.Deserialize<ReadSingleEmployee>(_restResponse.Content);
             actual.Should().BeEquivalentTo(expected);
